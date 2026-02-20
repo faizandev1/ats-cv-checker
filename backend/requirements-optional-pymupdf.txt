@@ -1,0 +1,3 @@
+# Optional (faster/better PDF text extraction)
+# If this fails on your Python version, use Python 3.12 and try again.
+PyMuPDF==1.24.9

@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resume Checker • ATS Dashboard</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="heroBg">
+    <header class="top">
+      <div class="container topRow">
+        <div class="miniLabel">RESUME CHECKER</div>
+      </div>
+    </header>
+
+    <main class="container hero">
+      <section class="heroLeft">
+        <h1>Is your resume good<br/>enough?</h1>
+        <p class="lead">
+          A fast ATS resume checker that extracts your details and runs key checks
+          to help you improve your resume score.
+        </p>
+
+        <div class="uploadCard">
+          <div class="uploadBox" id="drop">
+            <input type="file" id="file" accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+            <div class="uploadInner">
+              <div class="uploadTitle">Drop your resume here or choose a file.</div>
+              <div class="uploadSub">PDF & DOCX only.</div>
+              <button class="uploadBtn" type="button" id="chooseBtn">Upload Your Resume</button>
+              <div class="privacyRow">
+                <span class="lock">🔒</span>
+                <span>Privacy guaranteed (processed locally).</span>
+              </div>
+              <div class="fileMeta" id="fileMeta"></div>
+            </div>
+          </div>
+
+          <div class="actionRow">
+            <button class="btn primary" id="analyzeBtn" disabled>Analyze</button>
+            <button class="btn" id="resetBtn" disabled>Reset</button>
+          </div>
+        </div>
+      </section>
+
+      <aside class="heroRight">
+        <div class="previewCard">
+          <div class="previewTop">
+            <div class="logo">
+              <span class="loop">∞</span>
+              <span>Enhancu</span>
+            </div>
+          </div>
+          <div class="previewBody">
+            <img src="/static/dashboard_mock.svg" alt="Dashboard preview" />
+          </div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <section class="container results" id="results">
+    <div class="resultsHead">
+      <div>
+        <h2>Your results</h2>
+        <p class="muted" id="resultsSub">Upload your resume and click Analyze.</p>
+      </div>
+      <div class="badge" id="gradeBadge">—</div>
+    </div>
+
+    <div class="dashGrid">
+      <div class="card gaugeCard">
+        <div class="gaugeHeader">
+          <div class="gTitle">Resume Score</div>
+          <div class="gMeta"><span id="issuesVal">—</span> issues</div>
+        </div>
+        <div class="gaugeWrap">
+          <svg viewBox="0 0 240 140" class="gaugeSvg" aria-hidden="true">
+            <path class="track" d="M20 120 A100 100 0 0 1 220 120" />
+            <path class="value" id="gaugePath" d="M20 120 A100 100 0 0 1 220 120" />
+          </svg>
+          <div class="gaugeCenter">
+            <div class="scoreNum" id="scoreVal">—</div>
+            <div class="scoreDen">/100</div>
+          </div>
+        </div>
+        <div class="gaugeFoot">
+          <div class="tiny">
+            <span class="dot good"></span> Pass
+          </div>
+          <div class="tiny">
+            <span class="dot warn"></span> Warning
+          </div>
+          <div class="tiny">
+            <span class="dot bad"></span> Fail
+          </div>
+        </div>
+      </div>
+
+      <div class="card checksCard">
+        <div class="checksHead">
+          <div class="cTitle">CONTENT</div>
+          <div class="subtiny">ATS Parse Rate & quality checks</div>
+        </div>
+        <div class="checksList" id="checksList"></div>
+      </div>
+
+      <div class="card infoCard">
+        <h3>Extracted profile</h3>
+        <div class="kv">
+          <div class="k">Name</div><div class="v" id="nameVal">—</div>
+          <div class="k">Email</div><div class="v" id="emailVal">—</div>
+          <div class="k">Phone</div><div class="v" id="phoneVal">—</div>
+          <div class="k">LinkedIn</div><div class="v" id="linkedinVal">—</div>
+          <div class="k">GitHub</div><div class="v" id="githubVal">—</div>
+        </div>
+        <div class="divider"></div>
+        <h4>About</h4>
+        <div class="box" id="aboutVal">—</div>
+      </div>
+
+      <div class="card skillsCard">
+        <h3>Skills</h3>
+        <div class="chips" id="skillsChips"></div>
+        <div class="empty" id="skillsEmpty">—</div>
+      </div>
+
+      <div class="card suggestionsCard">
+        <h3>Suggestions</h3>
+        <ul class="list" id="sugList"></ul>
+        <div class="empty" id="sugEmpty">—</div>
+      </div>
+
+      <div class="card wide">
+        <div class="twoCol">
+          <div>
+            <h3>Experience / Projects</h3>
+            <pre class="box pre" id="xpVal">—</pre>
+          </div>
+          <div>
+            <h3>Education</h3>
+            <pre class="box pre" id="eduVal">—</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card wide">
+        <h3>ATS signals</h3>
+        <div class="signals" id="signals"></div>
+      </div>
+
+      <div class="card wide">
+        <h3>Extracted preview</h3>
+        <pre class="box pre" id="previewVal">—</pre>
+      </div>
+    </div>
+  </section>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
